@@ -1,0 +1,9 @@
+This project was defined and implemented as an answer to the Honors Track feature of "Python for Everybody Specialization", from the University of Michigan, available at coursera.org.
+
+In the fifth and final module of this course, it is encouraged to create a project (Capstone) that uses the concepts taught and learnt in the four preceding modules.
+
+I chose to create a capstone project named "Temporal analysis of the number of doctor appointments in Primary Care in Portugal using Python and interactive visualization".
+
+Together with the project files, I've created a README.txt that attempts to follow the structure commonly used in projects of the data science industry.
+
+
