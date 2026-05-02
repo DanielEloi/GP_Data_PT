@@ -2,7 +2,7 @@
 
 ![Python](https://img.shields.io/badge/Python-3.13-blue)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-![Status](https://img.shields.io/badge/Status-Complete-brightgreen)
+![Status](https://img.shields.io/badge/Status-WIP-yellow)
 
 ## Overview
 This project was defined and implemented as an answer to the Honors Track feature of "Python for Everybody Specialization", from the University of Michigan, available at coursera.org.
@@ -32,65 +32,35 @@ Analysing the number of GP appointments throughout the years may shed a new ligh
 
 ## Methodology
 1. **Search for a source**: dados.gov.pt was found. Downloaded the CSV dataset at https://dados.gov.pt/pt/datasets/consultas-medicas-nos-cuidados-de-saude-primarios-2/.
----
-1. **Data extraction** — To be filled later
-2. **Feature engineering** — To be filled later
-3. **Modelling** — To be filled later
-4. **Evaluation** — To be filled later
-5. **Explainability** — To be filled later
 
 ---
 
 ## Results
 
-(Just an example. To be filled later.)
-
-| Model               | AUC-ROC | Brier Score |
-|---------------------|---------|-------------|
-| Logistic Regression | 0.71    | 0.18        |
-| Random Forest       | 0.78    | 0.15        |
-| XGBoost             | 0.82    | 0.13        |
-
-![SHAP Summary Plot](images/shap_summary.png)
+(To be filled later.)
 
 ---
 
 ## How to Run
 
-To be filled later
+(To be filled later)
 
-$ git clone https://github.com/danieleloi/readmission-mimic
-$ cd readmission-mimic
-$ pip install -r requirements.txt
-$ jupyter notebook notebooks/01_data_extraction.ipynb
 
 ---
 
 ## Repository Structure
-├── data/               # Raw data not included (see Dataset section)
-├── notebooks/
-│   ├── 01_data_extraction.ipynb
-│   ├── 02_feature_engineering.ipynb
-│   └── 03_modelling_evaluation.ipynb
-├── src/                # Python modules
-├── images/             # Plots and figures
-├── requirements.txt
-└── README.md
+(To be filled later)
 
 ---
 
 ## Limitations & Future Work
-(To be filled later)
+- Data from the Vitacare EHR system was not embedded into the database provided.
+- Some data is missing - many entries have no data regarding house visits or other types of appointments
 
-- Data from the Vitacare EHR system was not embedded into the database provided.  
-
-- Model trained on US ICU data (MIMIC); generalisability to Portuguese SNS context requires validation
-- Missing data handled with median imputation — more robust methods (MICE) could improve performance
-- Future work: temporal validation (train 2008–2015, test 2016–2019) and integration with a Streamlit interface
 
 ---
 
 ## Author
-**Daniel Eloi, MD** — Family Physician transitioning to Clinical Data Science  
+**Daniel M. Eloi, MD** — Family Physician transitioning to Clinical Data Science  
 📍 Aveiro, Portugal | [LinkedIn](https://www.linkedin.com/in/daniel-e-55b439b6/) | [GitHub](https://github.com/DanielEloi)
 
