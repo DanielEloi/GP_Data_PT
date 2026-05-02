@@ -55,7 +55,9 @@ Analysing the number of GP appointments throughout the years may shed a new ligh
 
 ## Limitations & Future Work
 - Data from the Vitacare EHR system was not embedded into the database provided.
-- Some data is missing - many entries have no data regarding house visits or other types of appointments
+- Some data is missing - many entries have no data regarding house visits or other types of appointments.
+- The data source is inconsistent regarding the date information. Some entries detail the date up to seconds, while others do not even provide the day of the month.
+- Whenever an entry does not provide the day of the date, the script adds the day to the date - day 1 of the month is assumed (the datetime.time format, from the datetime module, does not accept incomplete date assignment). It is unclear whether data from a certain month includes appointments up until the end of that month or not. It would further complicate the code to find the last day of the particular month on the entry where the day of the date is missing, so day 1 was chosen for simplicity reasons; however, this simplicity comes at the cost of potential bias in the information.
 
 
 ---
