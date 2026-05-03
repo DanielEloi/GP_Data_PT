@@ -1,8 +1,8 @@
-# Temporal analysis of the number of doctor appointments in Primary Care in Portugal using Python and interactive visualization
+# Temporal analysis of the number of doctor appointments in Primary Care in Portugal using Python
 
 ![Python](https://img.shields.io/badge/Python-3.13-blue)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-![Status](https://img.shields.io/badge/Status-WIP-yellow)
+![Status](https://img.shields.io/badge/Status-Complete-brightgreen)
 
 ## Overview
 This project was defined and implemented as an answer to the Honors Track feature of "Python for Everybody Specialization", from the University of Michigan, available at coursera.org.
@@ -18,7 +18,7 @@ Citing the World Health Organization, Primary Health Care "is the most inclusive
 Meanwhile, there has been an alarming increase in the number of people with no designated family doctor in Portugal throughout the last decade (https://www.lusa.pt/article/44176435/portugal-people-without-family-doctors-still-over-1-5m-in-2024-health-service). 
 At the same time, there are several reports of a decrease in the number of GPs working full-time in the public sector (https://pmc.ncbi.nlm.nih.gov/articles/PMC11316367/).
 
-Analysing the number of GP appointments throughout the years may shed a new light regarding how well (or ill) covered is the portuguese population regarding Primary Care. At the same it, it might provide an interesting opportunity to assess how the global Covid-19 pandemic changed General Practice in Portugal. 
+Analysing the number of GP appointments throughout the years may shed a new light regarding how well (or ill) covered is the portuguese population regarding Primary Care. At the same time, it might provide an interesting opportunity to assess how the global Covid-19 pandemic changed General Practice in Portugal. 
 
 ---
 
@@ -67,7 +67,6 @@ Planned analyses include:
 - Yearly totals per appointment type and share with unspecified area.
 - Yearly activity relative to that appointment type’s peak across 2018–2025.
 - Seasonal distribution of activity (winter/spring/summer/autumn).
-- For each region (Norte, Centro, LVT, Alentejo, Algarve), the percentage of national total per appointment type.
 
 Example of table:
 
@@ -82,7 +81,13 @@ Example of table:
 
 ## Results
 
-Preliminary results suggest a marked drop in face‑to‑face visits in 2020 with a compensatory rise in other appointment types.
+The results are available at `table1.csv`, `table2.csv` and `table3.csv`.
+
+The amount of data that was not located at any particular region or sub region is rather negligible, below 0.05% of total yearly data in most cases. However, there was a spike of unlocated appointments of the 'other' type in the year 2020, reaching 5% of the total yearly data.
+
+2019 was the year with the most face-to-face doctor appointments; it was followed by a very sharp decrese. In fact, face-to-face appointments reached the lowest value of the entire series in 2020, probably due to the covid-19 pandemic outbreak. Appointment numbers did climb steadily after the 2020 hit, a tendency that can be observed across all types of appointments.
+
+The evenness of work volume across the four seasons is remarkable. The most obvious difference is the slightly lower number of medical appointments in summer, which can probably be explained by the higher number of doctors in vacation during these sunny months. The busiest season tends to be winter, albeit by a small margin. 
 
 ---
 
@@ -98,7 +103,7 @@ python DataQuery.py
 ---
 
 ## Repository Structure
-(To be filled later)
+
 ```text
 .
 ├── DataMiner.py
@@ -116,7 +121,11 @@ python DataQuery.py
 - Data from the Vitacare EHR system was not embedded into the database provided.
 - Some data is missing - many entries have no data regarding house visits or other types of appointments.
 - The analysis in this project is straightforward; it does not use more advanced statistical concepts. It also does not relate the data with the number of GPs working in the public health system at each given time. In future work, it would be interesting to implement statistical analysis and relate appointment trends to the number of GPs working in the public system over time.
-
+- Limited familiarity with data export tools in Python (which were not a core focus of the “Python for Everybody Specialization”) meant that query results were mainly presented as text and basic tables. Future iterations of this project will incorporate explicit data export pipelines and richer presentation techniques, such as CSV outputs, graphs, and additional visual summaries.
+- Some SQL queries in DataQuery.py were refined with the help of an AI assistant; all code was reviewed and validated by me. The code planning was also done entirely by me. 
+- The project can be further honed with checks before overwriting output files (eg. the tables csv  files).
+- Future refactoring may also increase the readability of the code, dividing the steps of the project into "macro" functions.
+- Additional regional analyses, such as computing the percentage contribution of each region (North, Center, Lisbon & Tagus Valley, Alentejo, Algarve) to the national totals by appointment type, were left for future iterations of the project, to keep the current scope focused and manageable.
 
 ---
 
