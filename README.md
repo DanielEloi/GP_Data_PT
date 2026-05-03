@@ -23,41 +23,99 @@ Analysing the number of GP appointments throughout the years may shed a new ligh
 ---
 
 ## Dataset
-- **Source:** To be filled later 
-- **Size:** To be filled later 
-- **Features used:** To be filled later
-- Note: To be filled later
+- **Source:** https://dados.gov.pt/pt/datasets/consultas-medicas-nos-cuidados-de-saude-primarios-2/
+- **Format:** JSON; each record is a dict with a fields dict containing the variables
+- **Size:** 7092 entries for Subregion + Date pairs, each with data for face-to-face doctor appointments, house visits and other types of appointments 
+- **Features used:** JSON module (Python), SQLite3 module (Python), SQLite3 browser for checking and debugging the database file, git BASH for version control
 
 ---
 
 ## Methodology
-1. **Search for a source**: dados.gov.pt was found. Downloaded the CSV dataset at https://dados.gov.pt/pt/datasets/consultas-medicas-nos-cuidados-de-saude-primarios-2/.
+1. **Search for a source**: dados.gov.pt was found. Downloaded the JSON dataset at https://dados.gov.pt/pt/datasets/consultas-medicas-nos-cuidados-de-saude-primarios-2/.
+2. **Understand the source file data and format**: the source file holds the Python equivalent to a list of dictionaries. Each entry of the list holds a dictionary with only one key-value pair that is relevant to us: "fields" : [dictionary]. The dictionary that represents the value for "fields", on the other hand, holds all the values we will be needing for this project.
+3. **Design the data model for the SQL database**:
+
+**Relational schema:**
+
+`Region`
+
+| Column   | Type    | Description           |
+|----------|---------|-----------------------|
+| id       | INTEGER | Primary key           |
+| region   | TEXT    | Region name (e.g. Norte) |
+
+`SubRegion`
+
+| Column       | Type    | Description                    |
+|--------------|---------|--------------------------------|
+| id           | INTEGER | Primary key                    |
+| subRegion    | TEXT    | Subregion name                 |
+| region_id    | INTEGER | Foreign key → `Region.id`      |
+
+`SubRegDate`
+
+| Column           | Type    | Description                                      |
+|------------------|---------|--------------------------------------------------|
+| faceToFaceAppts  | INTEGER | Number of face‑to‑face appointments             |
+| houseVisits      | INTEGER | Number of home visits                           |
+| otherAppts       | INTEGER | Other appointments                              |
+| PRIMARY KEY      | (subRegion_id, date) | Composite key                       |
+
+4. **Implement the import script**: Implement the Python script file that imports the data from the source file and writes it on a SQL database file.
+5. **Plan the information to be analyzed and shown in results**: It is easier and more productive to plan the information we intend do show at the end of the queries, and then write the queries accordingly.
+Planned analyses include:
+- Yearly totals per appointment type and share with unspecified area.
+- Yearly activity relative to that appointment type’s peak across 2018–2025.
+- Seasonal distribution of activity (winter/spring/summer/autumn).
+- For each region (Norte, Centro, LVT, Alentejo, Algarve), the percentage of national total per appointment type.
+
+Example of table:
+
+| Year | F2F appoints | % with unspecified area | House visits | % with unspecified area | Other appts | % with unspecified area |
+|------|--------------|-------------------------|--------------|-------------------------|-------------|-------------------------|
+| 2018 |                                                                                                        
+| 2019 |
+| ...  |
+| 2025 |
 
 ---
 
 ## Results
 
-(To be filled later.)
+Preliminary results suggest a marked drop in face‑to‑face visits in 2020 with a compensatory rise in other appointment types.
 
 ---
 
 ## How to Run
 
-(To be filled later)
-
+```bash
+git clone https://github.com/DanielEloi/GP_Data_PT.git
+cd GP_Data_PT
+python DataMiner.py
+python DataQuery.py
+```
 
 ---
 
 ## Repository Structure
 (To be filled later)
+```text
+.
+├── DataMiner.py
+├── DataMiner_log.txt
+├── DataQuery.py
+├── GPappointsdata.db
+├── GPappointsData.json
+├── ReadFirst.txt
+└── README.md
+```
 
 ---
 
 ## Limitations & Future Work
 - Data from the Vitacare EHR system was not embedded into the database provided.
 - Some data is missing - many entries have no data regarding house visits or other types of appointments.
-- The data source is inconsistent regarding the date information. Some entries detail the date up to seconds, while others do not even provide the day of the month.
-- Whenever an entry does not provide the day of the date, the script adds the day to the date - day 1 of the month is assumed (the datetime.time format, from the datetime module, does not accept incomplete date assignment). It is unclear whether data from a certain month includes appointments up until the end of that month or not. It would further complicate the code to find the last day of the particular month on the entry where the day of the date is missing, so day 1 was chosen for simplicity reasons; however, this simplicity comes at the cost of potential bias in the information.
+- The analysis in this project is straightforward; it does not use more advanced statistical concepts. It also does not relate the data with the number of GPs working in the public health system at each given time. In future work, it would be interesting to implement statistical analysis and relate appointment trends to the number of GPs working in the public system over time.
 
 
 ---
