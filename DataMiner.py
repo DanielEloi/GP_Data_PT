@@ -18,7 +18,7 @@ while True:
     try:
         debugMsg('Opening file ' + str(datafile) + '...', True)
         fHand = open(datafile)
-        debugMsg('File opened sucessfully.', True)
+        debugMsg('File opened successfully.', True)
         break
     except: debugMsg('File ' + datafile + ' not found or impossible to open.', True)
 
@@ -144,7 +144,7 @@ for entry in data:
 
     # Convert the date into a SQL-friendly DATE variable. The JSON data holds the date variable in a string like "2026-04-29T12:11:39.530+02:00"
     date = date[:9]
-    if(len(date) < 9): date = date + '-01' # In case only the month is provided in this entry, I chose to place the data in the first day of the month.
+    if len(date) < 9: date = date + '-01' # In case only the month is provided in this entry, I chose to place the data in the first day of the month.
     date = datetime.date.fromisoformat(date)
 
     # Now insert the data into the subRegDate table. Check if there is already a row with this subRegion and this date.
